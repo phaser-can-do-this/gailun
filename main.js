@@ -2,7 +2,7 @@
 window.onload = function() {
 
 
-  var game = new Phaser.Game(300, 400, Phaser.AUTO, 'game');
+  var game = new Phaser.Game(500, 600, Phaser.AUTO, 'game');
   // For Debug
   window.game = game;
 

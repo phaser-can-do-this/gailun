@@ -25,43 +25,6 @@ Preloader.prototype = {
   },
 
   create: function() {
-    console.log('createed ');
-    console.log(this);
-    this.stage.setBackgroundColor('#191919');
-
-    this.blood = this.add.sprite(100, 100, 'blood');
-    this.blood.animations.add('play',
-      Phaser.Animation.generateFrameNames('blood', 1, 9, '.png', 4), 10,
-      true, false);
-    this.blood.scale.setTo(0.5);
-    this.blood.anchor.setTo(0, 0.5);
-    // this.state.start('Menu');
-    console.log(this.blood);
-    this.blood.rotation = 0;
-    // this.blood.animations.play('play');
-
-    this.blood2 = this.add.sprite(100, 100, 'blood');
-    this.blood2.animations.add('play',
-      Phaser.Animation.generateFrameNames('blood', 1, 9, '.png', 4), 10,
-      true, false);
-    this.blood2.scale.setTo(0.5);
-    this.blood2.anchor.setTo(0, 0.5);
-    // this.state.start('Menu');
-    console.log(this.blood2);
-    this.blood2.angle = 90;
-    // this.blood2.animations.play('play');
-
-    this.hero = this.add.sprite(100, 200, 'roles');
-    this.hero.scale.setTo(0.8);
-    this.hero.animations.add('attack',
-      Phaser.Animation.generateFrameNames('role', 2, 9, '.png', 4), 15,
-      true, false);
-    this.hero.animations.add('die',
-      Phaser.Animation.generateFrameNames('role', 10, 42, '.png', 4), 15,
-      true, false);
-
-    // this.hero.animations.play('die');
-    var self = this;
     this.time.events.loop(
       Phaser.Timer.SECOND * 1,
       function() {
