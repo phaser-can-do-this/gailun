@@ -10,7 +10,6 @@ window.onload = function() {
   game.state.add('Preloader', Preloader);
   game.state.add('Intro', Intro);
   game.state.add('GameBoard', GameBoard);
-  game.state.add('Gameover', Gameover);
   game.state.start('Boost');
 
 
