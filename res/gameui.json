@@ -1,0 +1,84 @@
+{"frames": {
+
+"again.png":
+{
+	"frame": {"x":2,"y":750,"w":270,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":270,"h":80},
+	"sourceSize": {"w":270,"h":80}
+},
+"bar.png":
+{
+	"frame": {"x":843,"y":592,"w":94,"h":11},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":3,"w":94,"h":11},
+	"sourceSize": {"w":97,"h":16}
+},
+"gameintro.png":
+{
+	"frame": {"x":2,"y":2,"w":560,"h":531},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":10,"w":560,"h":531},
+	"sourceSize": {"w":564,"h":543}
+},
+"more.png":
+{
+	"frame": {"x":564,"y":513,"w":544,"h":77},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":5,"y":11,"w":544,"h":77},
+	"sourceSize": {"w":554,"h":92}
+},
+"over.png":
+{
+	"frame": {"x":564,"y":2,"w":546,"h":509},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":17,"w":546,"h":509},
+	"sourceSize": {"w":548,"h":531}
+},
+"quan.png":
+{
+	"frame": {"x":564,"y":592,"w":277,"h":248},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":277,"h":248},
+	"sourceSize": {"w":277,"h":248}
+},
+"return.png":
+{
+	"frame": {"x":2,"y":658,"w":542,"h":90},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":542,"h":90},
+	"sourceSize": {"w":543,"h":91}
+},
+"share.png":
+{
+	"frame": {"x":274,"y":750,"w":270,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":270,"h":80},
+	"sourceSize": {"w":270,"h":80}
+},
+"start.png":
+{
+	"frame": {"x":2,"y":535,"w":560,"h":121},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":13,"w":560,"h":121},
+	"sourceSize": {"w":564,"h":139}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "gameui.png",
+	"format": "RGBA8888",
+	"size": {"w":1112,"h":842},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:dd316c9e7c96b59e5f863838bdbd19fe:7c153387022f295d2b260f56378af69e:9b380cb3cb85b034a59364a079596f94$"
+}
+}
