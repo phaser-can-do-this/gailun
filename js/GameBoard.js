@@ -14,20 +14,21 @@ GameBoard.prototype = {
   },
 
   create: function() {
-    this.backgroud = this.add.image(
-      this.world.centerX,
-      this.world.centerY, 'backgroud');
-
     this.physics.startSystem(Phaser.Physics.ARCADE);
 
 
+    this.backgroud = this.add.image(
+      this.world.centerX,
+      this.world.centerY, 'backgroud');
     this.backgroud.anchor.setTo(0.5);
+
+
 
     this.light = this.add.sprite(this.world.centerX, this.world.centerY,
       'light', 'ta0001.png');
-    this.physics.enable(this.light, Phaser.Physics.ARCADE);
-    this.light.anchor.setTo(0.5);
     this.light.scale.setTo(0.4);
+    this.light.anchor.setTo(0.5);
+    this.physics.enable(this.light, Phaser.Physics.ARCADE);
     this.light.body.immovable = true;
     this.light.body.setSize(20, 20);
 
@@ -41,7 +42,7 @@ GameBoard.prototype = {
 
     this.hero = this.add.sprite(100, 300, 'roles');
     this.hero.scale.setTo(0.8);
-    this.hero.anchor.setTo(0.4);
+    this.hero.anchor.setTo(0.5);
     this.physics.enable(this.hero, Phaser.Physics.ARCADE);
     this.hero.body.setSize(150, 150);
 
@@ -65,8 +66,7 @@ GameBoard.prototype = {
       if (self.hero.targets.length > 0) {
         var p = self.hero.targets[0];
         var dis = pos.distance(p, true);
-        if (dis <= 5) {
-          console.log('pop', dis,self.hero.targets.length,p, pos);
+        if (dis <= 6) {
           self.hero.targets.shift();
           self.hero.body.velocity.x = 0;
           self.hero.body.velocity.y = 0;
@@ -86,35 +86,47 @@ GameBoard.prototype = {
         var hp = hero.position;
         var lp = light.position;
         var target = hero.targets[0];
-        var dx=0;
-        var dy=0;
-        hero.body.velocity.setTo(0,0);
+        var dx = 0;
+        var dy = 0;
+        var totalWidth = hero.body.width + light.body.width ;
+        var totalHeight = hero.body.height + light.body.height ;
 
-        if(Math.abs(hp.x-lp.x)===85){
-          dx = 0;
+        if (Math.round(Math.abs(hp.x - lp.x) * 2) === totalWidth) {
           var ydiff = target.y - hp.y;
-          if(ydiff>0){
-            dy = -hp.y +lp.y + (151+21)/2;
-          }else{
-            dy = -(151+21)/2 -hp.y+lp.y;
+          dy = -hp.y + lp.y + ydiff / Math.abs(ydiff) * (totalWidth ) /
+            2;
+            dy *= 1.10;
+        } else if (Math.round(Math.abs(hp.y - lp.y) * 2) === totalHeight) {
+          var xdiff = target.x - hp.x;
+          dx = -hp.x + lp.x + xdiff / Math.abs(xdiff) * (totalHeight) /
+            2;
+          dx *= 1.10;
+        }
+
+        if (dx !== 0 || dy !== 0) {
+          var direct = new Phaser.Point(dx, dy);
+          if (hero.targets.length === 1) {
+            hero.targets.unshift(Phaser.Point.add(direct, hp));
           }
-
         }
-
-        var direct = new Phaser.Point(dx,dy);
-        console.log('>',Math.abs(hp.x-lp.x),direct);
-
-        if(hero.targets.length===1){
-          hero.targets.unshift(Phaser.Point.add(direct,hp));
-        }else{
-          // hero.targets[0] = Phaser.Point.add(direct,hp);
-        }
-        // callback when overlaped
 
       }, null, this);
+
+
     if (this.input.mousePointer.isDown) {
-      console.log('click');
-      this.hero.targets[0] = this.input.activePointer.position.clone();
+
+      var center  = new Phaser.Point(this.world.centerX,this.world.centerY);
+
+      var p = this.input.activePointer.position.clone();
+
+      var diff =Phaser.Point.subtract(p,center);
+
+      if(diff.getMagnitude()<110 ){
+        diff.setMagnitude(110);
+        p = Phaser.Point.add(center,diff);
+      }
+
+      this.hero.targets = [p];
     }
 
   },
