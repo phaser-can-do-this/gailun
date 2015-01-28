@@ -1,4 +1,5 @@
 'use strict';
+/*global Boost,Preloader*/
 window.onload = function() {
 
 
@@ -11,6 +12,4 @@ window.onload = function() {
   game.state.add('Intro', Intro);
   game.state.add('GameBoard', GameBoard);
   game.state.start('Boost');
-
-
 };

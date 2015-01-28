@@ -1,7 +1,9 @@
 'use strict';
-var GameBoard = function(game) {};
+/*global MonsterPool*/
+var GameBoard = function() {};
 
 GameBoard.prototype = {
+
   init: function() {
     //something before preload
   },
@@ -48,30 +50,38 @@ GameBoard.prototype = {
       this.bloods.add(blood);
     }
 
-    this.topLeft = this.add.group();
-    for (var i = 0; i < 20; i++) {
-      var type = i % 2 ? 1 : 3;
-      this.topLeft.add(new Monster(this.game, type, this.bloods));
-    }
+    // topLeft topRigh bottomLeft bottomRight
+    this.poolConfigs = [{
+        types: [1, 3],
+        bloods: this.bloods,
+        scaleX: 1,
+      }, {
+        types: [1, 3],
+        bloods: this.bloods,
+        scaleX: -1,
+      },
 
-    this.topRight = this.add.group();
-    for (i = 0; i < 20; i++) {
-      var type = i % 2 ? 1 : 3;
-      this.topRight.add(new Monster(this.game, type, this.bloods, -1, 1));
-    }
+      {
+        types: [2, 4],
+        bloods: this.bloods,
+        scaleX: 1
+      }, {
+        types: [2, 4],
+        bloods: this.bloods,
+        scaleX: -1
+      }
+    ];
+    var self = this;
+    this.monsterGroups = this.poolConfigs.map(function(config) {
+      return new MonsterPool(self.game, config);
+    });
 
-    this.bottomLeft = this.add.group();
-    for (i = 0; i < 20; i++) {
-      var type = i % 2 ? 2 : 4;
-      this.bottomLeft.add(new Monster(this.game, type, this.bloods));
-    }
 
-    this.bottomRight = this.add.group();
-    for (i = 0; i < 20; i++) {
-      var type = i % 2 ? 2 : 4;
-      this.bottomRight.add(new Monster(this.game, type, this.bloods, -1, 1));
-    }
+    // this.topRight = new MonsterPool(this.game, );
 
+    // this.bottomLeft = new MonsterPool(this.game, );
+
+    // this.bottomRight = new MonsterPool(this.game, );
 
 
     this.light = this.add.sprite(this.world.centerX, this.world.centerY,
@@ -89,10 +99,21 @@ GameBoard.prototype = {
     this.circle.anchor.setTo(0.5);
     this.circle.scale.setTo(0.5);
 
-    this.topLeft.getFirstDead().attackFrom(this.light, 10, 10, 1);
-    this.topRight.getFirstDead().attackFrom(this.light, 300, 10, 1);
-    this.bottomLeft.getFirstDead().attackFrom(this.light, 10, 490, 1);
-    this.bottomRight.getFirstDead().attackFrom(this.light, 300, 490, 1);
+    this.time.events.loop(
+      Phaser.Timer.SECOND * 2,
+      function() {
+        var self = this;
+        this.monsterGroups.forEach(function(group) {
+          group.getFirstDead().attackFrom(self.light, 10, 10, 1);
+
+        });
+        // this.topLeft.getFirstDead().attackFrom(this.light, 10, 10, 1);
+        // this.topRight.getFirstDead().attackFrom(this.light, 300, 10, 1);
+        // this.bottomLeft.getFirstDead().attackFrom(this.light, 10, 490, 1);
+        // this.bottomRight.getFirstDead().attackFrom(this.light, 300, 490,
+        //   1);
+      }, this);
+
 
 
     this.hero = new Hero(this.game, 100, 300);
@@ -140,25 +161,16 @@ GameBoard.prototype = {
 
       }, null, this);
 
-    this.physics.arcade.collide(this.light, this.topLeft, this.onHitLight,
-      null, this);
-    this.physics.arcade.collide(this.light, this.topRight, this.onHitLight,
-      null, this);
-    this.physics.arcade.collide(this.light, this.bottomLeft, this.onHitLight,
-      null, this);
-    this.physics.arcade.collide(this.light, this.bottomRight, this.onHitLight,
-      null, this);
+    var self = this;
+    this.monsterGroups.forEach(function(group) {
+      self.physics.arcade.collide(self.light, group, self.onHitLight,
+        null, self);
+    });
 
-    this.physics.arcade.collide(this.hero, this.topLeft, this.onHitLight,
-      null, this);
-    this.physics.arcade.collide(this.hero, this.topRight, this.onHitLight,
-      null, this);
-    this.physics.arcade.collide(this.hero, this.bottomLeft, this.onHitLight,
-      null, this);
-    this.physics.arcade.collide(this.hero, this.bottomRight, this.onHitLight,
-      null, this);
-
-
+    this.monsterGroups.forEach(function(group) {
+      self.physics.arcade.collide(self.hero, group, self.onHitLight,
+        null, self);
+    });
 
     if (this.input.mousePointer.isDown) {
 

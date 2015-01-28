@@ -9,7 +9,7 @@ function Hero(game, x, y) {
   this.body.setSize(150, 150);
 
   this.animations.add('attack',
-    Phaser.Animation.generateFrameNames('role', 2, 9, '.png', 4), 15,
+    Phaser.Animation.generateFrameNames('role', 2, 9, '.png', 4), 20,
     true, false);
   this.animations.add('die',
     Phaser.Animation.generateFrameNames('role', 10, 42, '.png', 4), 15,
