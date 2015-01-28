@@ -14,3 +14,6 @@ Boost.prototype = {
   }
 
 };
+
+
+module.exports = Boost;

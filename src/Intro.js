@@ -36,3 +36,5 @@ Intro.prototype = {
 
   update: function() {}
 };
+
+module.exports = Intro;

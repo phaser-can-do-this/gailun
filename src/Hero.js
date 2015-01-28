@@ -4,9 +4,13 @@ function Hero(game, x, y) {
   Phaser.Sprite.call(this, game, x, y, 'roles');
 
   this.scale.setTo(0.8);
-  this.anchor.setTo(0.5);
+  this.anchor.setTo(0.5, 0.5);
   this.game.physics.enable(this, Phaser.Physics.ARCADE);
   this.body.setSize(150, 150);
+  this.body.velocity.x = 0;
+  this.body.velocity.y = 0;
+
+
 
   this.animations.add('attack',
     Phaser.Animation.generateFrameNames('role', 2, 9, '.png', 4), 20,
@@ -46,5 +50,10 @@ Hero.prototype.update = function() {
     } else {
       this.game.physics.arcade.moveToXY(this, p.x, p.y, 300);
     }
+  } else {
+    this.body.velocity.x = 0;
+    this.body.velocity.y = 0;
   }
 };
+
+module.exports = Hero;

@@ -1,5 +1,7 @@
 'use strict';
-/*global MonsterPool*/
+
+var MonsterPool = require('./MonsterPool.js');
+var Hero = require('./Hero.js');
 var GameBoard = function() {};
 
 GameBoard.prototype = {
@@ -107,14 +109,7 @@ GameBoard.prototype = {
           group.getFirstDead().attackFrom(self.light, 10, 10, 1);
 
         });
-        // this.topLeft.getFirstDead().attackFrom(this.light, 10, 10, 1);
-        // this.topRight.getFirstDead().attackFrom(this.light, 300, 10, 1);
-        // this.bottomLeft.getFirstDead().attackFrom(this.light, 10, 490, 1);
-        // this.bottomRight.getFirstDead().attackFrom(this.light, 300, 490,
-        //   1);
       }, this);
-
-
 
     this.hero = new Hero(this.game, 100, 300);
     this.add.existing(this.hero);
@@ -136,15 +131,16 @@ GameBoard.prototype = {
           var ydiff = target.y - hp.y;
           dy = -hp.y + lp.y + ydiff / Math.abs(ydiff) * (totalWidth) /
             2;
-          dy *= 1.10;
+          // dy *= 1.10;
         } else if (Math.round(Math.abs(hp.y - lp.y) * 2) === totalHeight) {
           var xdiff = target.x - hp.x;
           dx = -hp.x + lp.x + xdiff / Math.abs(xdiff) * (totalHeight) /
             2;
-          dx *= 1.10;
+          // dx *= 1.10;
         }
 
         if (dx !== 0 || dy !== 0) {
+          console.log('collide', dx, dy);
           var direct = new Phaser.Point(dx, dy);
           if (hero.targets.length === 1) {
             hero.targets.unshift(Phaser.Point.add(direct, hp));
@@ -154,7 +150,7 @@ GameBoard.prototype = {
       }, null, this);
 
     this.physics.arcade.collide(this.monster, this.light,
-      function(monster, obj2) {
+      function(monster) {
         // callback  when overlaped
         monster.body.velocity.x = 0;
         monster.body.velocity.y = 0;
@@ -197,9 +193,9 @@ GameBoard.prototype = {
 
   render: function() {
     // Sprite debug info
-    // this.game.debug.spriteInfo(this.hero, 32, 32);
+    this.game.debug.spriteInfo(this.hero, 32, 32);
     // body debug info
-    // this.game.debug.body(this.monster);
+    this.game.debug.body(this.hero);
     // this.game.debug.body(this.light);
     // input debug info
     // this.game.debug.inputInfo(69, 60);
@@ -208,3 +204,6 @@ GameBoard.prototype = {
   }
 
 };
+
+
+module.exports = GameBoard;
