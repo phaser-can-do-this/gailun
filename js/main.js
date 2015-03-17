@@ -1415,6 +1415,7 @@ Boost.prototype = {
 
 
 module.exports = Boost;
+
 }).call(this,require("VCmEsw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/Boost.js","/")
 },{"VCmEsw":4,"buffer":1}],6:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
@@ -1432,19 +1433,11 @@ GameBoard.prototype = {
 
   preload: function() {
 
-
-    // this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     this.game.scale.pageAlignHorizontally = true;
-    // this.game.scale.pageAlignVertically = true;
-    // this.game.scale.pageVertically = true;
-    //             this.game.scale.setScreenSize(true);
-    //             this.game.scale.setShowAll();
-    //             this.game.scale.refresh();
-
-
-    this.stage.maxWidth = 600;
-    this.stage.maxHeight = 800;
-    this.stage.scaleMode = Phaser.ScaleManager.SHOW_ALL; //resize your window to see the stage resize too\
+    this.game.scale.pageAlignVertically = true;
+    this.game.scale.pageVertically = true;
+    this.game.scale.setScreenSize(true);
     this.game.scale.setShowAll();
     this.game.scale.refresh();
 
@@ -1627,6 +1620,7 @@ GameBoard.prototype = {
 
 
 module.exports = GameBoard;
+
 }).call(this,require("VCmEsw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/GameBoard.js","/")
 },{"./Hero.js":7,"./MonsterPool.js":10,"VCmEsw":4,"buffer":1}],7:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
@@ -1689,6 +1683,7 @@ Hero.prototype.update = function() {
 };
 
 module.exports = Hero;
+
 }).call(this,require("VCmEsw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/Hero.js","/")
 },{"VCmEsw":4,"buffer":1}],8:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
@@ -1873,5 +1868,5 @@ window.onload = function() {
   game.state.add('GameBoard', require('./GameBoard.js'));
   game.state.start('Boost');
 };
-}).call(this,require("VCmEsw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_a2bc5f16.js","/")
+}).call(this,require("VCmEsw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_57b2e6ef.js","/")
 },{"./Boost.js":5,"./GameBoard.js":6,"./Intro.js":8,"./Preloader.js":11,"VCmEsw":4,"buffer":1}]},{},[12])
