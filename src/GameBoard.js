@@ -12,19 +12,11 @@ GameBoard.prototype = {
 
   preload: function() {
 
-
-    // this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     this.game.scale.pageAlignHorizontally = true;
-    // this.game.scale.pageAlignVertically = true;
-    // this.game.scale.pageVertically = true;
-    //             this.game.scale.setScreenSize(true);
-    //             this.game.scale.setShowAll();
-    //             this.game.scale.refresh();
-
-
-    this.stage.maxWidth = 600;
-    this.stage.maxHeight = 800;
-    this.stage.scaleMode = Phaser.ScaleManager.SHOW_ALL; //resize your window to see the stage resize too\
+    this.game.scale.pageAlignVertically = true;
+    this.game.scale.pageVertically = true;
+    this.game.scale.setScreenSize(true);
     this.game.scale.setShowAll();
     this.game.scale.refresh();
 

@@ -22,7 +22,7 @@ gulp.task('ugly', ['browserify'], function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch('src/*.js', ['browserify']);
+  return gulp.watch('src/*.js', ['browserify']);
 });
 
 gulp.task('default', ['browserify']);
